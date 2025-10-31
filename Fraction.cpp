@@ -42,21 +42,15 @@ void Fraction::print() const{
 
 void Fraction::reduction()
 {
-
-	if (den<0) {
+	int g = gcd(num, den);
+	if (g != 0) {
+		num /= g;
+		den /= g;
+	}
+	if (den < 0) {
 		num = -num;
 		den = -den;
 	}
-	if (num % den == 0) {
-		num /= den;
-		den = 1;
-	}
-	if (den % num == 0) {
-		den /= num;
-		num = 1;
-	}
-
-
 }
 
 Fraction Fraction::operator+(const Fraction& other)
@@ -124,4 +118,15 @@ bool Fraction::operator>(const Fraction& other)
 bool Fraction::operator<(const Fraction& other)
 {
 	return num * other.den < den * other.num;
+}
+
+int Fraction::gcd(int a, int b) {
+	a = abs(a);
+	b = abs(b);
+	while (b != 0) {
+		int temp = b;
+		b = a % b;
+		a = temp;
+	}
+	return a;
 }

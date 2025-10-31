@@ -34,6 +34,7 @@ public:
 	bool operator>(const Fraction& other);
 	bool operator<(const Fraction& other);
 
+	static int gcd(int a, int b);
 
 };
 
